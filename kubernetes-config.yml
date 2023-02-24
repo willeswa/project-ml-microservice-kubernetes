@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: microservice
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: microservice
+  template:
+    metadata:
+      name: microservice
+      labels:
+        app: microservice
+
+    spec:
+      containers:
+      - name: microservice
+        image: dheemonk/monkimages:natalie
+        ports:
+        - containerPort: 5000
+        env:
+          - name: FLASK_ENV
+            value: "development"
+          - name: debug
+            value: "true"
